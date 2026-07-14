@@ -1,0 +1,94 @@
+:root {
+    --primary-teal: #0D9488;
+    --secondary-navy: #0F172A;
+    --accent-yellow: #F59E0B;
+    --bg-light: #F8FAFC;
+}
+
+/* Sfondo generale del sito */
+body {
+    background-color: var(--bg-light);
+    color: var(--secondary-navy);
+}
+
+/* Sovrascrittura bottoni Bootstrap */
+.btn-primary {
+    background-color: var(--primary-teal);
+    border-color: var(--primary-teal);
+}
+.btn-primary:hover {
+    background-color: #0F766E; 
+}
+
+.btn-warning {
+    background-color: var(--accent-yellow);
+    border-color: var(--accent-yellow);
+    color: #fff;
+}
+
+/* Navbar personalizzata */
+.bg-navy {
+    background-color: var(--secondary-navy);
+}
+
+/* Applica il Flexbox a destra SOLO quando il menu mobile riceve la classe .show (cioè quando è aperto) */
+.navbar-collapse.collapse.show {
+    display: flex !important;
+}
+
+/* Quando invece il menu è chiuso, lascia che Bootstrap lo nasconda normalmente */
+.navbar-collapse.collapse:not(.show) {
+    display: none !important;
+}
+
+/* Mantiene il comportamento standard orizzontale sui computer (schermi grandi) */
+@media (min-width: 992px) {
+    .navbar-collapse.collapse {
+        display: block !important;
+    }
+}
+
+/* Badge del Prezzo */
+.price-badge {
+    background-color: var(--accent-yellow);
+    color: white;
+    font-weight: bold;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+
+/* Colore dei link normali nella Navbar (es. Home) */
+.navbar-nav .nav-link {
+    color: rgba(255, 255, 255, 0.75);
+    transition: color 0.2s ease-in-out;
+}
+.navbar-nav .nav-link:hover, 
+.navbar-nav .nav-link:focus {
+    color: #ffffff; /* Si illumina di bianco puro al passaggio */
+}
+
+/* Bottone Accedi (Outline/Trasparente) */
+.btn-outline-custom {
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    background-color: transparent;
+    transition: all 0.2s ease-in-out;
+}
+.btn-outline-custom:hover {
+    background-color: rgba(255, 255, 255, 0.1); /* Leggero riflesso bianco */
+    border-color: #ffffff;
+    color: #ffffff;
+}
+
+/* Bottone Registrati (Pieno con il nostro colore Teal) */
+.btn-teal {
+    background-color: var(--primary-teal);
+    border-color: var(--primary-teal);
+    color: #ffffff;
+    transition: all 0.2s ease-in-out;
+}
+.btn-teal:hover {
+    background-color: #0F766E;
+    border-color: #0F766E;
+}
