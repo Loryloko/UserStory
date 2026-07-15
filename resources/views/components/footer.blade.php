@@ -2,7 +2,7 @@
     <div class="container">
         <div class="row align-items-center">
             
-            <!-- Colonna 1: Brand e Mission -->
+            <!-- Colonna 1: Brand -->
             <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
                 <h5 class="fw-bold mb-1 text-uppercase tracking-wider">
                     <i class="bi bi-lightning-charge-fill text-warning me-1"></i>Presto.it

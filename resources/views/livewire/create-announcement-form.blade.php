@@ -1,15 +1,6 @@
 <div class="card shadow-sm p-4 bg-white rounded-3 border-0">
     <h2 class="mb-4 fw-bold text-navy">Crea il tuo Annuncio</h2>
 
-    <!-- MESSAGGIO DI CONFERMA AD ANNUNCIO INSERITO (Richiesto dalla traccia) -->
-    @if (session()->has('message'))
-        <div class="alert alert-success alert-dismissible fade show d-flex align-items-center mb-4" role="alert">
-            <i class="bi bi-check-circle-fill me-2 fs-5"></i>
-            <div>{{ session('message') }}</div>
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-    @endif
-
     <!-- FORM COLLEGATO ALLA FUNZIONE STORE DI LIVEWIRE -->
     <form wire:submit.prevent="store">
         @csrf
@@ -52,7 +43,7 @@
             @error('description') <div class="invalid-feedback">{{ $message }}</div> @enderror
         </div>
 
-        <!-- Tasto di Invio (Usa la classe Teal del brand) -->
+        <!-- Tasto di Invio -->
         <button type="submit" class="btn btn-teal w-100 py-2 fw-bold text-uppercase">
             <i class="bi bi-plus-lg me-1"></i> Pubblica Annuncio
         </button>

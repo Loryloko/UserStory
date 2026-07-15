@@ -6,7 +6,7 @@
             <i class="bi bi-lightning-charge-fill text-warning me-1"></i>Presto.it
         </a>
         
-        <!-- Bottone per smartphone (hamburger menu) -->
+        <!-- Bottone per smartphone -->
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -21,7 +21,6 @@
                     <a class="nav-link text-white" href="/">Home</a>
                 </li>
 
-                <!-- Logica di Autenticazione -->
                 @auth
                     <!-- Se l'utente è LOGGATO -->
                     <li class="nav-item">
@@ -35,7 +34,6 @@
                             <i class="bi bi-person-circle me-1"></i>{{ auth()->user()->name }}
                         </a>
                         
-                        <!-- La tendina si aprirà ordinatamente sotto il profilo -->
                         <div class="dropdown-menu dropdown-menu-end shadow border-0 p-2 mt-1 text-center position-absolute" aria-labelledby="userDropdown" style="min-width: 160px;">
                             <div class="dropdown-header text-muted border-bottom pb-2 mb-2 d-flex align-items-center justify-content-center">
                                 <i class="bi bi-person me-2"></i> {{ auth()->user()->name }}
