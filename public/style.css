@@ -1,17 +1,21 @@
+/* ==========================================================================
+   STILI PERSONALIZZATI - DISATTIVATI PER USER STORY 1
+   (Li riattiverai quando arriverai al Punto 6 del Backlog)
+   ========================================================================== */
+/*
 :root {
     --primary-teal: #0D9488;
+    --primary-teal-hover: #0F766E;
     --secondary-navy: #0F172A;
     --accent-yellow: #F59E0B;
     --bg-light: #F8FAFC;
 }
 
-/* Sfondo generale del sito */
 body {
     background-color: var(--bg-light);
     color: var(--secondary-navy);
 }
 
-/* Sovrascrittura bottoni Bootstrap */
 .btn-primary {
     background-color: var(--primary-teal);
     border-color: var(--primary-teal);
@@ -26,26 +30,10 @@ body {
     color: #fff;
 }
 
-/* Navbar personalizzata */
 .bg-navy {
     background-color: var(--secondary-navy);
 }
 
-.navbar-collapse.collapse.show {
-    display: flex !important;
-}
-
-.navbar-collapse.collapse:not(.show) {
-    display: none !important;
-}
-
-@media (min-width: 992px) {
-    .navbar-collapse.collapse {
-        display: block !important;
-    }
-}
-
-/* Badge del Prezzo */
 .price-badge {
     background-color: var(--accent-yellow);
     color: white;
@@ -54,8 +42,6 @@ body {
     border-radius: 5px;
 }
 
-
-/* Colore dei link normali nella Navbar */
 .navbar-nav .nav-link {
     color: rgba(255, 255, 255, 0.75);
     transition: color 0.2s ease-in-out;
@@ -65,27 +51,53 @@ body {
     color: #ffffff; 
 }
 
-/* Bottone Accedi */
 .btn-outline-custom {
     color: #ffffff;
     border: 1px solid rgba(255, 255, 255, 0.5);
     background-color: transparent;
-    transition: all 0.2s ease-in-out;
-}
-.btn-outline-custom:hover {
-    background-color: rgba(255, 255, 255, 0.1); /* Leggero riflesso bianco */
-    border-color: #ffffff;
-    color: #ffffff;
 }
 
-/* Bottone Registrati */
+.btn-outline-custom:hover {
+    background-color: rgba(255, 255, 255, 0.1); 
+    border-color: #ffffff;
+}
+
 .btn-teal {
     background-color: var(--primary-teal);
     border-color: var(--primary-teal);
     color: #ffffff;
-    transition: all 0.2s ease-in-out;
 }
+
 .btn-teal:hover {
-    background-color: #0F766E;
-    border-color: #0F766E;
+    background-color: var(--primary-teal-hover);
+    border-color: var(--primary-teal-hover);
+}
+*/
+
+/* ==========================================================================
+   FIX STRUTTURALI NAVBAR (QUESTI RIMANONO ATTIVI FUORI DAI COMMENTI)
+   ========================================================================== */
+
+/* Stato iniziale: niente alone e bordo trasparente */
+.navbar-toggler {
+    --bs-navbar-toggler-focus-shadow: none !important;
+    outline: 0 !important;
+    box-shadow: none !important;
+    border: 1px solid transparent !important;
+    transition: border-color 0.2s ease-in-out; 
+}
+
+/* Rimuove l'alone anche durante il clic o la selezione */
+.navbar-toggler:focus,
+.navbar-toggler:active,
+.navbar-toggler:focus-visible {
+    outline: 0 !important;
+    box-shadow: none !important;
+    border-color: transparent !important;
+}
+
+/* Al passaggio del cursore (Hover): compare un bordo bianco leggero */
+.navbar-toggler:hover {
+    border-color: rgba(255, 255, 255, 0.5) !important;
+    box-shadow: none !important;
 }

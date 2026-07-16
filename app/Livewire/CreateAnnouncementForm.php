@@ -25,20 +25,24 @@ class CreateAnnouncementForm extends Component
     // Metodo per salvare l'annuncio nel database
     public function store()
     {
-        // 1. Esegue la validazione basata sugli attributi sopra
-        $this->validate();
+    // 1. Esegue la validazione basata sugli attributi
+    $this->validate();
 
-        // 2. Salva l'annuncio legandolo all'utente autenticato e alla categoria scelta
-        Announcement::create([
-            'title' => $this->title,
-            'price' => $this->price,
-            'description' => $this->description,
-            'category_id' => $this->category_id,
-            'user_id' => Auth::id(),
-        ]);
+    // 2. Salva l'annuncio legandolo all'utente autenticato e alla categoria scelta
+    Announcement::create([
+        'title' => $this->title,
+        'price' => $this->price,
+        'description' => $this->description,
+        'category_id' => $this->category_id,
+        'user_id' => Auth::id(),
+    ]);
 
-        return redirect()->route('home')->with('successMessage', 'Annuncio inserito con successo!');
-        }
+    // 3. Crea il messaggio di conferma flash (verrà letto dal tuo layout)
+    session()->flash('successMessage', 'Annuncio inserito con successo!');
+
+    // 4. Svuota i campi del form così l'utente può inserire un nuovo annuncio senza ricaricare la pagina
+    $this->reset(['title', 'price', 'description', 'category_id']);
+    }
 
     public function render()
     {

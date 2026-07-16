@@ -1,16 +1,16 @@
-<footer class="bg-navy text-white pt-4 pb-2 mt-5 border-top border-secondary position-absolute bottom-0 w-100">
+<footer class="navbar-dark bg-dark text-white pt-4 pb-2 mt-auto border-top border-secondary">
     <div class="container">
         <div class="row align-items-center">
             
-            <!-- Colonna 1: Brand -->
+            <!-- Brand e Descrizione -->
             <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
-                <h5 class="fw-bold mb-1 text-uppercase tracking-wider">
+                <h5 class="fw-bold mb-1 text-uppercase">
                     <i class="bi bi-lightning-charge-fill text-warning me-1"></i>Presto.it
                 </h5>
                 <p class="small text-white-50 mb-0">Il portale di annunci più veloce per liberarti di ciò che non ti piace più.</p>
             </div>
             
-            <!-- Colonna 2: Icone Social e Link -->
+            <!-- Icone Social -->
             <div class="col-md-6 text-center text-md-end">
                 <div class="mb-2">
                     <a href="#" class="text-white me-3 fs-5"><i class="bi bi-facebook"></i></a>
@@ -22,7 +22,7 @@
 
         </div>
 
-        <!-- Linea di copyright inferiore -->
+        <!-- Linea inferiore e Copyright -->
         <hr class="bg-secondary my-3">
         <div class="row">
             <div class="col text-center">

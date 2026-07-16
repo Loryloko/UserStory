@@ -7,7 +7,7 @@
 @vite(['resources/css/app.css', 'resources/js/app.js'])
 <link rel="stylesheet" href="{{ asset('style.css') }}">
 </head>
-  <body class="min-vh-100 position-relative bg-light">
+  <body class="min-vh-100 d-flex flex-column bg-light">
     <x-nav/>
 
     @if (session()->has('successMessage'))
