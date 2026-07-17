@@ -57,7 +57,7 @@
                         @error('description') <div class="invalid-feedback">{{ $message }}</div> @enderror
                     </div>
 
-                    <!-- Tasto di Invio Standard (Usiamo btn-primary nativo, senza icone o maiuscoli forzati) -->
+                    <!-- Tasto di Invio Standard -->
                     <button type="submit" class="btn btn-primary w-100 py-2 fw-bold">
                         Pubblica annuncio
                     </button>
