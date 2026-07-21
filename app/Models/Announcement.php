@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Announcement extends Model 
 {
-    protected $fillable = ['title', 'price', 'description', 'category_id', 'user_id'];
+    protected $fillable = ['title', 'price', 'description', 'category_id', 'user_id', 'is_accepted'];
 
     /**
      * Relazione 1 a N (Inversa): Un annuncio appartiene a una Categoria

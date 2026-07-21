@@ -1,7 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
     <div class="container">
         
-        <!-- Logo del sito -->
         <a class="navbar-brand fw-bold fs-4" href="/">
             <i class="bi bi-lightning-charge-fill text-warning me-1"></i>Presto.it
         </a>
@@ -18,12 +17,19 @@
                     <a class="nav-link text-white" href="{{ route('home') }}">Home</a>
                 </li>
                 
-                <!-- LINK AGGIUNTO PER LA USER STORY #2 -->
                 <li class="nav-item">
                     <a class="nav-link text-white" href="{{ route('announcements.index') }}">Tutti gli Annunci</a>
                 </li>
 
                 @auth
+                    @if(auth()->user()->is_revisor)
+                        <li class="nav-item">
+                            <a class="btn btn-outline-warning btn-sm fw-bold px-3" href="{{ route('revisor.index') }}">
+                                <i class="bi bi-shield-fill-check me-1"></i>Zona Revisore
+                            </a>
+                        </li>
+                    @endif
+
                     <li class="nav-item">
                         <a class="btn btn-warning btn-sm fw-bold px-3 text-white d-inline-block" href="{{ route('announcements.create') }}">
                             <i class="bi bi-plus-circle-fill me-1"></i>Inserisci Annuncio

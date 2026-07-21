@@ -1,13 +1,18 @@
-<footer class="navbar-dark bg-dark text-white pt-4 pb-2 mt-auto border-top border-secondary">
+<footer class="bg-dark text-white pt-4 pb-2 mt-auto border-top border-secondary">
     <div class="container">
         <div class="row align-items-center">
             
-            <!-- Brand e Descrizione -->
+            <!-- Brand, Descrizione e Link Richiesto -->
             <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
                 <h5 class="fw-bold mb-1 text-uppercase">
                     <i class="bi bi-lightning-charge-fill text-warning me-1"></i>Presto.it
                 </h5>
-                <p class="small text-white-50 mb-0">Il portale di annunci più veloce per liberarti di ciò che non ti piace più.</p>
+                <p class="small text-white-50 mb-2">Il portale di annunci più veloce per liberarti di ciò che non ti piace più.</p>
+                
+                <!-- LINK "LAVORA CON NOI" PER LA USER STORY #3 -->
+                <a href="{{ route('become.revisor.form') }}" class="text-white-50 small text-decoration-none d-inline-flex align-items-center opacity-75 hover-opacity-100">
+                    <i class="bi bi-briefcase-fill me-1"></i> Lavora con noi
+                </a>
             </div>
             
             <!-- Icone Social -->

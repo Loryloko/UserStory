@@ -15,15 +15,15 @@ class AnnouncementController extends Controller
 
     public function index(?Category $category = null)
     {
-    $categories = Category::all();
+        $categories = Category::all();
 
-    if ($category) {
-        $announcements = $category->announcements()->latest()->get();
-        $title = "Annunci della categoria: " . $category->name;
-    } else {
-        $announcements = Announcement::latest()->get();
-        $title = "Tutti gli Annunci";
-    }
+        if ($category) {
+            $announcements = $category->announcements()->where('is_accepted', true)->latest()->get();
+            $title = "Annunci della categoria: " . $category->name;
+        } else {
+            $announcements = Announcement::where('is_accepted', true)->latest()->get();
+            $title = "Tutti gli Annunci";
+        }
 
         return view('announcements.index', compact('announcements', 'title', 'categories'));
     }
