@@ -4,8 +4,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Bootstrap demo</title>
-@vite(['resources/css/app.css', 'resources/js/app.js'])
-<link rel="stylesheet" href="{{ asset('style.css') }}">
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <link rel="stylesheet" href="{{ asset('style.css') }}">
+    @livewireStyles
 </head>
   <body class="min-vh-100 d-flex flex-column bg-light">
     <x-nav/>
@@ -25,6 +26,6 @@
     </main>
 
     <x-footer/>
-
+    @livewireScripts
   </body>
 </html>

@@ -13,20 +13,47 @@ class AnnouncementController extends Controller
         return view('announcements.create');
     }
 
-    public function index(?Category $category = null)
-    {
-        $categories = Category::all();
+public function index(Request $request)
+{
+    $categories = Category::all();
+    
+    $query = Announcement::where(function($q) {
+        $q->where('is_accepted', true)->orWhereNull('is_accepted');
+    });
 
-        if ($category) {
-            $announcements = $category->announcements()->where('is_accepted', true)->latest()->get();
-            $title = "Annunci della categoria: " . $category->name;
-        } else {
-            $announcements = Announcement::where('is_accepted', true)->latest()->get();
-            $title = "Tutti gli Annunci";
+    $title = "Tutti gli Annunci";
+
+    if ($request->filled('category_id')) {
+        $categoryId = $request->input('category_id');
+        $query->where('category_id', $categoryId);
+        
+        $currentCat = Category::find($categoryId);
+        if ($currentCat) {
+            $title = "Annunci della categoria: " . $currentCat->name;
         }
-
-        return view('announcements.index', compact('announcements', 'title', 'categories'));
     }
+
+    if ($request->filled('searched')) {
+        $searched = trim($request->input('searched'));
+        
+        $query->where(function($q) use ($searched) {
+            $q->where('title', 'LIKE', "%{$searched}%")
+              ->orWhere('description', 'LIKE', "%{$searched}%")
+              ->orWhereHas('category', function($catQuery) use ($searched) {
+                  $catQuery->where('name', 'LIKE', "%{$searched}%");
+              });
+        });
+        
+        $title = $request->filled('category_id') 
+            ? $title . " - Risultati per: \"{$searched}\"" 
+            : "Risultati della ricerca per: \"{$searched}\"";
+    }
+
+    $announcements = $query->latest()->get();
+
+    return view('announcements.index', compact('announcements', 'title', 'categories'));
+}
+
 
     public function show(Announcement $announcement)
     {
