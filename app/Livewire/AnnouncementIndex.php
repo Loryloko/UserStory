@@ -11,9 +11,11 @@ class AnnouncementIndex extends Component
     public $searched = '';
     public $category_id = '';
 
-    /**
-     * Metodo per resettare tutti i filtri all'istante
-     */
+    protected $queryString = [
+        'searched' => ['except' => ''],
+        'category_id' => ['except' => '']
+    ];
+
     public function resetFilters()
     {
         $this->searched = '';
@@ -23,36 +25,47 @@ class AnnouncementIndex extends Component
     public function render()
     {
         $categories = Category::all();
+        $searchTerm = trim($this->searched);
 
-        $query = Announcement::where(function($q) {
-            $q->where('is_accepted', true)->orWhereNull('is_accepted');
-        });
+        if (strlen($searchTerm) >= 2) {
+            $matchingCategoryIds = Category::where('name', 'LIKE', "%{$searchTerm}%")->pluck('id')->toArray();
 
-        if (!empty($this->category_id)) {
-            $query->where('category_id', $this->category_id);
+            $scoutIds = Announcement::search($searchTerm)
+                ->where('is_accepted', true)
+                ->get()
+                ->pluck('id')
+                ->toArray();
+
+            $query = Announcement::where('is_accepted', true)
+                ->where(function($q) use ($scoutIds, $matchingCategoryIds) {
+                    $q->whereIn('id', $scoutIds)
+                      ->orWhereIn('category_id', $matchingCategoryIds);
+                });
+
+            if (!empty($this->category_id)) {
+                $query->where('category_id', (int) $this->category_id);
+            }
+            
+            $announcements = $query->latest()->get();
+        } else {
+            $query = Announcement::where('is_accepted', true);
+
+            if (!empty($this->category_id)) {
+                $query->where('category_id', $this->category_id);
+            }
+
+            $announcements = $query->latest()->get();
         }
-
-        if (strlen(trim($this->searched)) >= 2) {
-            $query->where(function($q) {
-                $q->where('title', 'LIKE', "%{$this->searched}%")
-                  ->orWhere('description', 'LIKE', "%{$this->searched}%")
-                  ->orWhereHas('category', function($catQuery) {
-                      $catQuery->where('name', 'LIKE', "%{$this->searched}%");
-                  });
-            });
-        }
-
-        $announcements = $query->latest()->get();
 
         $title = "Tutti gli Annunci";
         if (!empty($this->category_id)) {
             $currentCat = Category::find($this->category_id);
             $title = "Annunci della categoria: " . ($currentCat->name ?? '');
         }
-        if (strlen(trim($this->searched)) >= 2) {
+        if (strlen($searchTerm) >= 2) {
             $title = !empty($this->category_id) 
-                ? $title . " - Risultati per: \"{$this->searched}\"" 
-                : "Risultati della ricerca per: \"{$this->searched}\"";
+                ? $title . " - Risultati per: \"{$searchTerm}\"" 
+                : "Risultati della ricerca per: \"{$searchTerm}\"";
         }
 
         return view('livewire.announcement-index', compact('announcements', 'categories', 'title'));

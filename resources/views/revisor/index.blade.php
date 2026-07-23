@@ -24,12 +24,16 @@
             <div class="row g-5">
                 
                 <div class="col-12 col-lg-6">
-                    <div class="bg-white rounded-3 shadow-sm p-2">
+                <div class="bg-white rounded-3 shadow-sm p-2">
+                    @if($announcement_to_check->images && $announcement_to_check->images->count() > 0)
+                        <img src="{{ Storage::url($announcement_to_check->images->first()->path) }}" class="img-fluid rounded-3" alt="Immagine annuncio">
+                    @else
                         <svg class="bd-placeholder-img card-img-top rounded-3" width="100%" height="350" xmlns="http://w3.org" role="img" aria-label="Placeholder" preserveAspectRatio="xMidYMid slice" focusable="false">
                             <title>Anteprima Annuncio</title>
                             <rect width="100%" height="100%" fill="#6c757d"></rect>
                             <text x="50%" y="50%" fill="#dee2e6" dy=".3em" text-anchor="middle" font-weight="bold" font-size="1.2rem">Anteprima Oggetto</text>
                         </svg>
+                    @endif
                     </div>
                 </div>
 

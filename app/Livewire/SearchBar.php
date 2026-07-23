@@ -4,15 +4,12 @@ namespace App\Livewire;
 
 use Livewire\Component;
 use App\Models\Announcement;
+use App\Models\Category;
 
 class SearchBar extends Component
 {
     public $query = '';
 
-    /**
-     * Si esegue all'avvio: intercetta se c'è già una parola nell'URL
-     * e la inserisce nella barra di ricerca allineando Livewire.
-     */
     public function mount()
     {
         $this->query = request()->input('searched', '');
@@ -30,18 +27,24 @@ class SearchBar extends Component
     public function render()
     {
         $results = [];
+        $searchTerm = trim($this->query);
 
-        if (strlen(trim($this->query)) >= 2) {
+        if (strlen($searchTerm) >= 2) {
+            $matchingCategoryIds = Category::where('name', 'LIKE', "%{$searchTerm}%")->pluck('id')->toArray();
+
+            $scoutIds = Announcement::search($searchTerm)
+                ->where('is_accepted', true)
+                ->get()
+                ->pluck('id')
+                ->toArray();
+
             $results = Announcement::where('is_accepted', true)
-                ->where(function($q) {
-                    $q->where('title', 'LIKE', "%{$this->query}%")
-                      ->orWhere('description', 'LIKE', "%{$this->query}%")
-                      ->orWhereHas('category', function($catQuery) {
-                          $catQuery->where('name', 'LIKE', "%{$this->query}%");
-                      });
+                ->where(function($q) use ($scoutIds, $matchingCategoryIds) {
+                    $q->whereIn('id', $scoutIds)
+                      ->orWhereIn('category_id', $matchingCategoryIds);
                 })
                 ->latest()
-                ->take(5) 
+                ->take(5)
                 ->get();
         }
 

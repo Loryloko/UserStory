@@ -9,7 +9,7 @@ class RevisorController extends Controller
 {
     public function index()
     {
-        $announcement_to_check = Announcement::where('is_accepted', null)->oldest()->first();
+        $announcement_to_check = Announcement::whereNull('is_accepted')->oldest()->first();
 
         return view('revisor.index', compact('announcement_to_check'));
     }
@@ -17,7 +17,7 @@ class RevisorController extends Controller
     public function acceptAnnouncement(Announcement $announcement)
     {
         $announcement->is_accepted = true;
-        $announcement->save();
+        $announcement->save(); 
 
         session(['last_revised_announcement_id' => $announcement->id]);
 
@@ -27,7 +27,7 @@ class RevisorController extends Controller
     public function rejectAnnouncement(Announcement $announcement)
     {
         $announcement->is_accepted = false;
-        $announcement->save();
+        $announcement->save(); 
 
         session(['last_revised_announcement_id' => $announcement->id]);
 
