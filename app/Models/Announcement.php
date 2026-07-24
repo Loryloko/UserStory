@@ -22,6 +22,7 @@ class Announcement extends Model
             'title' => $this->title,
             'description' => $this->description,
             'is_accepted' => $this->is_accepted, 
+            'category_id' => $this->category_id,
         ];
     }
 

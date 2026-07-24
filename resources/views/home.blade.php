@@ -1,6 +1,5 @@
 <x-layout>
     <div class="container my-5 py-4">
-        <!-- Sezione Principale (Hero) -->
         <div class="row justify-content-center text-center mb-5">
             <div class="col-12 col-md-10 col-lg-8">
                 <h1 class="display-5 fw-bold text-dark mb-3">Benvenuto su Presto.it</h1>
@@ -15,7 +14,6 @@
             </div>
         </div>
 
-        <!-- GRIGLIA DEGLI ULTIMI ANNUNCI -->
         <div class="row mb-4 border-top pt-5">
             <div class="col-12 text-center text-md-start">
                 <h2 class="fw-bold text-dark mb-1">Ultimi Annunci Inseriti</h2>
@@ -27,10 +25,9 @@
             @forelse($announcements as $announcement)
                 <div class="col-12 col-md-6 col-lg-4">
                     <div class="card h-100 shadow-sm border-0 bg-white rounded-3">
-                        <img src="https://picsum.photos" class="card-img-top rounded-top-3" alt="Immagine annuncio">
+                        <img src="#" class="card-img-top rounded-top-3" alt="Immagine annuncio">
                         
                         <div class="card-body d-flex flex-column">
-                            <!-- Controllo di sicurezza per evitare errori sui parametri mancanti -->
                             @if($announcement->category)
                                 <a href="{{ route('categories.show', $announcement->category) }}" class="badge bg-secondary text-decoration-none mb-2 align-self-start py-2 px-3 fw-semibold">
                                     {{ $announcement->category->name }}
@@ -61,7 +58,6 @@
             @endforelse
         </div>
 
-        <!-- Sezione informativa -->
         <div class="row justify-content-center g-4 text-center border-top pt-5">
             <div class="col-12 col-md-4">
                 <h3 class="h5 fw-bold text-dark">1. Registrati</h3>
