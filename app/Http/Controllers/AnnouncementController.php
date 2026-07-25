@@ -7,53 +7,59 @@ use App\Models\Announcement;
 use App\Models\Category;
 
 class AnnouncementController extends Controller
-{
-    public function create()
     {
-        return view('announcements.create');
-    }
-
-    public function index(Request $request, Category $category = null)
-{
-    $categories = Category::all();
-    $title = "Tutti gli Annunci";
-
-    $query = Announcement::where('is_accepted', true);
-
-    if ($category && $category->exists) {
-        $query->where('category_id', $category->id);
-        $title = "Annunci della categoria: " . $category->name;
-    } elseif ($request->filled('category_id')) {
-        $categoryId = $request->input('category_id');
-        $query->where('category_id', $categoryId);
-        
-        $currentCat = Category::find($categoryId);
-        if ($currentCat) {
-            $title = "Annunci della categoria: " . $currentCat->name;
+        public function create()
+        {
+            return view('announcements.create');
         }
-    }
 
-    $announcements = $query->latest()->paginate(6);
-
-    return view('announcements.index', compact('announcements', 'title', 'categories'));
-}
-
-
-   public function search(Request $request)
+        public function index(Request $request, Category $category = null)
     {
-    $requestedSearch = $request->input('query');
+        $categories = Category::all();
+        $title = "Tutti gli Annunci";
 
-    $announcements = Announcement::search($requestedSearch)
-        ->where('is_accepted', true) 
-        ->query(function ($builder) use ($requestedSearch) {
-            $builder->select('announcements.*')
-                ->join('categories', 'announcements.category_id', '=', 'categories.id')
-                ->orWhere('categories.name', 'LIKE', "%{$requestedSearch}%");
-        })
-        ->paginate(6); 
+        $query = Announcement::where('is_accepted', true);
 
-    return view('announcements.searched', compact('announcements', 'requestedSearch'));
+        if ($category && $category->exists) {
+            $query->where('category_id', $category->id);
+            $title = "Annunci della categoria: " . $category->name;
+        } elseif ($request->filled('category_id')) {
+            $categoryId = $request->input('category_id');
+            $query->where('category_id', $categoryId);
+            
+            $currentCat = Category::find($categoryId);
+            if ($currentCat) {
+                $title = "Annunci della categoria: " . $currentCat->name;
+            }
+        }
+
+        $announcements = $query->latest()->paginate(6);
+
+        return view('announcements.index', compact('announcements', 'title', 'categories'));
     }
+
+
+        public function search(Request $request)
+    {
+        $query = $request->input('query');
+        $categoryId = $request->input('category_id');
+
+        $dbQuery = Announcement::where('is_accepted', true);
+
+        if (!empty($query)) {
+            $announcementIds = Announcement::search($query)->keys();
+            $dbQuery->whereIn('id', $announcementIds);
+        }
+
+        if (!empty($categoryId)) {
+            $dbQuery->where('category_id', $categoryId);
+        }
+
+        $announcements = $dbQuery->latest()->paginate(10);
+
+        return view('announcements.searched', ['announcements' => $announcements, 'query' => $query ?? '']);
+    }
+   
 
     public function show(Announcement $announcement)
     {

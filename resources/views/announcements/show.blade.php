@@ -21,13 +21,13 @@
 
                     <div class="carousel-inner">
                         <div class="carousel-item active">
-                            <img src="https://picsum.photos" class="d-block w-100" alt="Foto segnaposto 1">
+                            <img src="#" class="d-block w-100" alt="Foto segnaposto 1">
                         </div>
                         <div class="carousel-item">
-                            <img src="https://picsum.photos" class="d-block w-100" alt="Foto segnaposto 2">
+                            <img src="#" class="d-block w-100" alt="Foto segnaposto 2">
                         </div>
                         <div class="carousel-item">
-                            <img src="https://picsum.photos" class="d-block w-100" alt="Foto segnaposto 3">
+                            <img src="#" class="d-block w-100" alt="Foto segnaposto 3">
                         </div>
                     </div>
 

@@ -24,32 +24,7 @@
         <div class="row g-4 mb-5">
             @forelse($announcements as $announcement)
                 <div class="col-12 col-md-6 col-lg-4">
-                    <div class="card h-100 shadow-sm border-0 bg-white rounded-3">
-                        <img src="#" class="card-img-top rounded-top-3" alt="Immagine annuncio">
-                        
-                        <div class="card-body d-flex flex-column">
-                            @if($announcement->category)
-                                <a href="{{ route('categories.show', $announcement->category) }}" class="badge bg-secondary text-decoration-none mb-2 align-self-start py-2 px-3 fw-semibold">
-                                    {{ $announcement->category->name }}
-                                </a>
-                            @else
-                                <span class="badge bg-warning text-dark mb-2 align-self-start py-2 px-3 fw-semibold">
-                                    Nessuna Categoria
-                                </span>
-                            @endif
-                            
-                            <h5 class="card-title fw-bold text-dark mb-2">{{ $announcement->title }}</h5>
-                            <p class="card-text fw-bold text-primary fs-5 mb-2">{{ number_format($announcement->price, 2) }} €</p>
-                            
-                            <p class="card-text text-secondary small mb-4 flex-grow-1">
-                                {{ Str::limit($announcement->description, 90) }}
-                            </p>
-                            
-                            <a href="{{ route('announcements.show', $announcement) }}" class="btn btn-outline-primary btn-sm w-100 py-2 fw-bold mt-auto">
-                                Visualizza Dettaglio
-                            </a>
-                        </div>
-                    </div>
+                    <x-card :announcement="$announcement" />
                 </div>
             @empty
                 <div class="col-12 text-center py-5">

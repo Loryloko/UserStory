@@ -18,11 +18,11 @@ class Announcement extends Model
     public function toSearchableArray(): array
     {
         return [
-            'id' => (int) $this->id,
+            'id' => $this->id,
             'title' => $this->title,
             'description' => $this->description,
+            'category' => $this->category ? $this->category->name: '',
             'is_accepted' => $this->is_accepted, 
-            'category_id' => $this->category_id,
         ];
     }
 

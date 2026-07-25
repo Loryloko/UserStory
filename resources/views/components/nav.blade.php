@@ -5,12 +5,18 @@
             <i class="bi bi-lightning-charge-fill text-warning me-1"></i>Presto.it
         </a>
         
-        <!-- Bottone hamburger per smartphone -->
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         
         <div class="collapse navbar-collapse" id="navbarNav">
+            <form class="d-flex ms-auto" role="search" action="{{ route('announcements.search') }}" method="GET">
+                <div class="input-group">
+                    <input type="search" name="query" class="form-control" placeholder="Search" aria-label="search">
+                    <button type="submit" class="input-group-text btn btn-outline-success" id="basic-addon2">Search</button>
+                </div>
+            </form>
+
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0 gap-3 pt-3 pt-lg-0 align-items-lg-center">
                 
                 <li class="nav-item">

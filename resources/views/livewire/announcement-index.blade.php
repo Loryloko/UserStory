@@ -1,5 +1,4 @@
 <div>
-    <!-- Intestazione Dinamica Reattiva -->
     <div class="row mb-4">
         <div class="col-12 text-center text-md-start">
             <h1 class="fw-bold text-dark mb-1">{{ $title }}</h1>
@@ -7,13 +6,11 @@
         </div>
     </div>
     
-    <!-- 🎛️ PANNELLO DI RICERCA LIVEWIRE (Niente tag <form> per evitare ricaricamenti) -->
     <div class="row mb-5">
         <div class="col-12">
             <div class="p-4 bg-white rounded-3 shadow-sm border border-light">
                 <div class="row g-3 align-items-end">
                     
-                    <!-- Campo di testo reattivo in tempo reale (User Story #10) -->
                     <div class="col-12 col-md-6">
                         <label class="form-label small fw-semibold text-secondary">Cerca una parola chiave (Live):</label>
                         <input 
@@ -25,7 +22,6 @@
                         >
                     </div>
                     
-                    <!-- Menu a tendina reattivo al cambio di selezione (User Story #2) -->
                     <div class="col-12 col-md-4">
                         <label class="form-label small fw-semibold text-secondary">Seleziona Categoria:</label>
                         <select wire:model.live="category_id" class="form-select">
@@ -36,7 +32,6 @@
                         </select>
                     </div>
                     
-                    <!-- Pulsante di Reset asincrono -->
                     <div class="col-12 col-md-2">
                         <button wire:click="resetFilters" class="btn btn-outline-secondary w-100 py-2 fw-bold" type="button">
                             Reset
@@ -48,7 +43,6 @@
         </div>
     </div>
 
-    <!-- Griglia degli annunci aggiornata in background via AJAX -->
     <div class="row g-4 mb-5">
         @forelse($announcements as $announcement)
             <div class="col-12 col-md-6 col-lg-4">
