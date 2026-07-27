@@ -4,7 +4,7 @@
         <div class="row mb-4">
             <div class="col-12">
                 <a href="{{ route('announcements.index') }}" class="btn btn-outline-secondary btn-sm fw-bold">
-                    <i class="bi bi-arrow-left me-1"></i> Torna a tutti gli annunci
+                    <i class="bi bi-arrow-left me-1"></i> {{ __('ui.backToAllAnnouncements') }}
                 </a>
             </div>
         </div>
@@ -21,23 +21,23 @@
 
                     <div class="carousel-inner">
                         <div class="carousel-item active">
-                            <img src="#" class="d-block w-100" alt="Foto segnaposto 1">
+                            <img src="#" class="d-block w-100" alt="{{ __('ui.placeholderPhoto') }} 1">
                         </div>
                         <div class="carousel-item">
-                            <img src="#" class="d-block w-100" alt="Foto segnaposto 2">
+                            <img src="#" class="d-block w-100" alt="{{ __('ui.placeholderPhoto') }} 2">
                         </div>
                         <div class="carousel-item">
-                            <img src="#" class="d-block w-100" alt="Foto segnaposto 3">
+                            <img src="#" class="d-block w-100" alt="{{ __('ui.placeholderPhoto') }} 3">
                         </div>
                     </div>
 
                     <button class="carousel-control-prev" type="button" data-bs-target="#announcementCarousel" data-bs-slide="prev">
                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Precedente</span>
+                        <span class="visually-hidden">{{ __('ui.previous') }}</span>
                     </button>
                     <button class="carousel-control-next" type="button" data-bs-target="#announcementCarousel" data-bs-slide="next">
                         <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Successivo</span>
+                        <span class="visually-hidden">{{ __('ui.next') }}</span>
                     </button>
                     
                 </div>
@@ -47,17 +47,17 @@
                 <div>
                     @if($announcement->category)
                         <a href="{{ route('categories.show', $announcement->category) }}" class="badge bg-secondary text-decoration-none mb-3 py-2 px-3 fw-semibold">
-                            {{ $announcement->category->name }}
+                            {{ __("ui." . $announcement->category->name) }}
                         </a>
                     @else
-                        <span class="badge bg-warning text-dark mb-3 py-2 px-3 fw-semibold">Nessuna Categoria</span>
+                        <span class="badge bg-warning text-dark mb-3 py-2 px-3 fw-semibold">{{ __('ui.noCategory') }}</span>
                     @endif
 
                     <h1 class="fw-bold text-dark mb-2">{{ $announcement->title }}</h1>
                     
                     <p class="fs-2 fw-bold text-primary mb-4">{{ number_format($announcement->price, 2) }} €</p>
                     
-                    <h4 class="fw-bold text-dark h6 text-uppercase tracking-wider mb-2">Descrizione dell'oggetto</h4>
+                    <h4 class="fw-bold text-dark h6 text-uppercase tracking-wider mb-2">{{ __('ui.descriptionLabel') }}</h4>
                     
                     <p class="text-secondary lh-base" style="white-space: pre-line;">
                         {{ $announcement->description }}
@@ -65,8 +65,8 @@
                 </div>
 
                 <div class="border-top pt-4 mt-4 text-muted small">
-                    <p class="mb-1"><i class="bi bi-person me-2"></i>Pubblicato da: <strong>{{ $announcement->user->name ?? 'Utente Anonimo' }}</strong></p>
-                    <p class="mb-0"><i class="bi bi-calendar3 me-2"></i>Data inserimento: {{ $announcement->created_at->format('d/m/Y alle H:i') }}</p>
+                    <p class="mb-1"><i class="bi bi-person me-2"></i>{{ __('ui.postedBy') }}: <strong>{{ $announcement->user->name ?? __('ui.anonymousUser') }}</strong></p>
+                    <p class="mb-0"><i class="bi bi-calendar3 me-2"></i>{{ __('ui.insertionDate') }}: {{ $announcement->created_at->format('d/m/Y H:i') }}</p>
                 </div>
             </div>
         </div>

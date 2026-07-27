@@ -5,17 +5,17 @@
             <form action="{{ route('announcements.search') }}" method="GET" class="row g-3 align-items-end">
                 
                 <div class="col-12 col-md-5">
-                    <label class="form-label small fw-bold text-secondary text-uppercase">Cosa cerchi?</label>
-                    <input type="search" name="query" class="form-control" placeholder="Es. Telefono, Auto..." aria-label="search" value="{{ request('query') }}">
+                    <label class="form-label small fw-bold text-secondary text-uppercase">{{ __('ui.whatAreYouLookingFor') }}</label>
+                    <input type="search" name="query" class="form-control" placeholder="{{ __('ui.searchPlaceholder') }}" aria-label="search" value="{{ request('query') }}">
                 </div>
 
                 <div class="col-12 col-md-4">
-                    <label class="form-label small fw-bold text-secondary text-uppercase">Categoria</label>
+                    <label class="form-label small fw-bold text-secondary text-uppercase">{{ __('ui.categoryLabel') }}</label>
                     <select name="category_id" class="form-select">
-                        <option value="">Tutte le categorie</option>
+                        <option value="">{{ __('ui.allCategories') }}</option>
                         @foreach($categories as $category)
                             <option value="{{ $category->id }}" {{ request('category_id') == $category->id ? 'selected' : '' }}>
-                                {{ $category->name }}
+                                {{ __("ui.$category->name") }}
                             </option>
                         @endforeach
                     </select>
@@ -23,7 +23,7 @@
 
                 <div class="col-12 col-md-3 d-flex">
                     <button type="submit" class="btn btn-primary fw-bold w-100 me-2 shadow-sm">
-                        <i class="bi bi-search me-1"></i> Cerca
+                        <i class="bi bi-search me-1"></i> {{ __('ui.search') }}
                     </button>
                     @if(request()->filled('query') || request()->filled('category_id'))
                         <a href="{{ route('announcements.index') }}" class="btn btn-outline-secondary shadow-sm">
@@ -44,7 +44,7 @@
                 </div>
             @empty
                 <div class="col-12 text-center py-5">
-                    <h4 class="text-muted fw-semibold">Nessun annuncio trovato.</h4>
+                    <h4 class="text-muted fw-semibold">{{ __('ui.noAnnouncementsFound') }}</h4>
                 </div>
             @endforelse
         </div>

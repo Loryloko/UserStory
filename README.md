@@ -1,1 +1,0 @@
-Professore, mi dispiace ho cercato di riscrivere il codice più simile possibile a quello della documentazione ma mi sono fatto aiutare per evitare crash con TNTSearch; se necessario posso ricominciare la userstory da capo, mi faccia sapere in caso con il commento della revisione

@@ -14,29 +14,34 @@ class AnnouncementController extends Controller
         }
 
         public function index(Request $request, Category $category = null)
-    {
-        $categories = Category::all();
-        $title = "Tutti gli Annunci";
+{
+    $categories = Category::all();
+    
+    $title = __('ui.allAnnouncements');
 
-        $query = Announcement::where('is_accepted', true);
+    $query = Announcement::where('is_accepted', true);
 
-        if ($category && $category->exists) {
-            $query->where('category_id', $category->id);
-            $title = "Annunci della categoria: " . $category->name;
-        } elseif ($request->filled('category_id')) {
-            $categoryId = $request->input('category_id');
-            $query->where('category_id', $categoryId);
-            
-            $currentCat = Category::find($categoryId);
-            if ($currentCat) {
-                $title = "Annunci della categoria: " . $currentCat->name;
-            }
+    if ($category && $category->exists) {
+        $query->where('category_id', $category->id);
+        
+        $translatedCat = __("ui." . $category->name);
+        $title = __('ui.categoryAnnouncementsTitle', ['category' => $translatedCat]);
+        
+    } elseif ($request->filled('category_id')) {
+        $categoryId = $request->input('category_id');
+        $query->where('category_id', $categoryId);
+        
+        $currentCat = Category::find($categoryId);
+        if ($currentCat) {
+            $translatedCat = __("ui." . $currentCat->name);
+            $title = __('ui.categoryAnnouncementsTitle', ['category' => $translatedCat]);
         }
-
-        $announcements = $query->latest()->paginate(6);
-
-        return view('announcements.index', compact('announcements', 'title', 'categories'));
     }
+
+    $announcements = $query->latest()->paginate(6);
+
+    return view('announcements.index', compact('announcements', 'title', 'categories'));
+}
 
 
         public function search(Request $request)

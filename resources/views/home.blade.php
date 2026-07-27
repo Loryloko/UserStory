@@ -2,13 +2,13 @@
     <div class="container my-5 py-4">
         <div class="row justify-content-center text-center mb-5">
             <div class="col-12 col-md-10 col-lg-8">
-                <h1 class="display-5 fw-bold text-dark mb-3">Benvenuto su Presto.it</h1>
+                <h1 class="display-5 fw-bold text-dark mb-3">{{ __('ui.welcomeTitle') }}</h1>
                 <p class="fs-5 text-secondary mb-4">
-                    La piattaforma semplice e veloce per pubblicare i tuoi annunci e dare una seconda vita ai tuoi oggetti.
+                    {{ __('ui.welcomeSubtitle') }}
                 </p>
                 <div class="mb-5">
                     <a href="{{ route('announcements.create') }}" class="btn btn-primary btn-lg px-5 py-3 fw-bold shadow-sm">
-                        Inserisci Annuncio
+                        {{ __('ui.insertAnnouncement') }}
                     </a>
                 </div>
             </div>
@@ -16,8 +16,8 @@
 
         <div class="row mb-4 border-top pt-5">
             <div class="col-12 text-center text-md-start">
-                <h2 class="fw-bold text-dark mb-1">Ultimi Annunci Inseriti</h2>
-                <p class="text-secondary small">Dai un'occhiata agli affari più recenti sul portale</p>
+                <h2 class="fw-bold text-dark mb-1">{{ __('ui.latestAnnouncementsTitle') }}</h2>
+                <p class="text-secondary small">{{ __('ui.latestAnnouncementsSubtitle') }}</p>
             </div>
         </div>
 
@@ -28,23 +28,23 @@
                 </div>
             @empty
                 <div class="col-12 text-center py-5">
-                    <p class="fs-5 text-secondary">Non ci sono ancora annunci disponibili. Sii il primo a pubblicarne uno!</p>
+                    <p class="fs-5 text-secondary">{{ __('ui.noAnnouncementsYet') }}</p>
                 </div>
             @endforelse
         </div>
 
         <div class="row justify-content-center g-4 text-center border-top pt-5">
             <div class="col-12 col-md-4">
-                <h3 class="h5 fw-bold text-dark">1. Registrati</h3>
-                <p class="small text-secondary mb-0">Crea un account in pochi secondi per accedere a tutte le funzionalità della piattaforma.</p>
+                <h3 class="h5 fw-bold text-dark">{{ __('ui.step1Title') }}</h3>
+                <p class="small text-secondary mb-0">{{ __('ui.step1Desc') }}</p>
             </div>
             <div class="col-12 col-md-4">
-                <h3 class="h5 fw-bold text-dark">2. Scegli la Categoria</h3>
-                <p class="small text-secondary mb-0">Seleziona una delle 10 categorie pre-compilate disponibili per il tuo oggetto.</p>
+                <h3 class="h5 fw-bold text-dark">{{ __('ui.step2Title') }}</h3>
+                <p class="small text-secondary mb-0">{{ __('ui.step2Desc') }}</p>
             </div>
             <div class="col-12 col-md-4">
-                <h3 class="h5 fw-bold text-dark">3. Pubblica</h3>
-                <p class="small text-secondary mb-0">Inserisci titolo, prezzo e descrizione per rendere subito visibile il tuo annuncio.</p>
+                <h3 class="h5 fw-bold text-dark">{{ __('ui.step3Title') }}</h3>
+                <p class="small text-secondary mb-0">{{ __('ui.step3Desc') }}</p>
             </div>
         </div>
     </div>

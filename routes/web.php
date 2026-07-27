@@ -25,3 +25,5 @@ Route::middleware(['auth', 'isRevisor'])->group(function () {
 Route::get('/announcements/{announcement}', [AnnouncementController::class, 'show'])->name('announcements.show');
 Route::get('/category/{category}', [AnnouncementController::class, 'index'])->name('categories.show');
 Route::get('/search/announcements', [AnnouncementController::class, 'search'])->name('announcements.search');
+
+Route::post('/lingua/{lang}', [PublicController::class, 'setLanguage'])->name('setLocale');

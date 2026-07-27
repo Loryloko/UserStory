@@ -39,4 +39,9 @@ class PublicController extends Controller
 
         return redirect()->route('home')->with('successMessage', 'Richiesta inviata con successo! Il team valuterà il tuo profilo.');
     }
+
+    public function setLanguage(String $lang){
+        session()->put('locale', $lang);
+        return redirect()->back();
+    }
 }

@@ -3,7 +3,7 @@
         <div class="col-12 col-md-8 col-lg-6">
             
             <div class="card shadow-sm p-4 bg-white border-0 rounded-3">
-                <h2 class="mb-4 fw-bold text-dark text-center">Crea il tuo Annuncio</h2>
+                <h2 class="mb-4 fw-bold text-dark text-center">{{ __('ui.createAnnouncementTitle') }}</h2>
                 
                 @if (session()->has('successMessage'))
                     <div class="alert alert-success alert-dismissible fade show d-flex align-items-center border-0 shadow-sm mb-4" role="alert">
@@ -16,14 +16,14 @@
                     @csrf
                     
                     <div class="mb-3">
-                        <label class="form-label fw-semibold">Titolo Annuncio</label>
-                        <input type="text" wire:model="title" class="form-control @error('title') is-invalid @enderror" placeholder="Es. iPhone 15 Pro Max">
+                        <label class="form-label fw-semibold">{{ __('ui.announcementTitleLabel') }}</label>
+                        <input type="text" wire:model="title" class="form-control @error('title') is-invalid @enderror" placeholder="{{ __('ui.announcementTitlePlaceholder') }}">
                         @error('title') <div class="invalid-feedback">{{ $message }}</div> @enderror
                     </div>
 
                     <div class="row">
                         <div class="col-md-6 mb-3">
-                            <label class="form-label fw-semibold">Prezzo (€)</label>
+                            <label class="form-label fw-semibold">{{ __('ui.priceLabel') }}</label>
                             <div class="input-group">
                                 <span class="input-group-text">€</span>
                                 <input type="number" step="0.01" wire:model="price" class="form-control @error('price') is-invalid @enderror" placeholder="0.00">
@@ -32,11 +32,11 @@
                         </div>
 
                         <div class="col-md-6 mb-3">
-                            <label class="form-label fw-semibold">Categoria</label>
+                            <label class="form-label fw-semibold">{{ __('ui.categoryLabel') }}</label>
                             <select wire:model="category_id" class="form-select @error('category_id') is-invalid @enderror">
-                                <option value="">Scegli una categoria...</option>
+                                <option value="">{{ __('ui.chooseCategoryPlaceholder') }}</option>
                                 @foreach($categories as $category)
-                                    <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                    <option value="{{ $category->id }}">{{ __("ui.$category->name") }}</option>
                                 @endforeach
                             </select>
                             @error('category_id') <div class="invalid-feedback">{{ $message }}</div> @enderror
@@ -44,13 +44,13 @@
                     </div>
 
                     <div class="mb-4">
-                        <label class="form-label fw-semibold">Descrizione dell'oggetto</label>
-                        <textarea wire:model="description" rows="5" class="form-control @error('description') is-invalid @enderror" placeholder="Descrivi le condizioni dell'oggetto..."></textarea>
+                        <label class="form-label fw-semibold">{{ __('ui.descriptionLabel') }}</label>
+                        <textarea wire:model="description" rows="5" class="form-control @error('description') is-invalid @enderror" placeholder="{{ __('ui.descriptionPlaceholder') }}"></textarea>
                         @error('description') <div class="invalid-feedback">{{ $message }}</div> @enderror
                     </div>
 
                     <button type="submit" class="btn btn-primary w-100 py-2 fw-bold">
-                        Pubblica annuncio
+                        {{ __('ui.publishAnnouncementBtn') }}
                     </button>
 
                 </form>

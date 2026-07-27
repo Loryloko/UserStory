@@ -2,12 +2,12 @@
     <div class="container my-5 py-4">
         <div class="mb-4">
             <a href="{{ route('announcements.index') }}" class="btn btn-outline-secondary btn-sm fw-bold">
-                <i class="bi bi-arrow-left me-1"></i> Torna a tutti gli annunci
+                <i class="bi bi-arrow-left me-1"></i> {{ __('ui.backToAllAnnouncements') }}
             </a>
         </div>
         
         <h2 class="mb-4 fw-bold text-dark">
-            Risultati della ricerca per: <span class="text-primary">"{{ $query }}"</span>
+            {{ __('ui.searchResultsFor') }}: <span class="text-primary">"{{ $query }}"</span>
         </h2>
 
         <div class="row">
@@ -17,7 +17,7 @@
                 </div>
             @empty
                 <div class="col-12 text-center py-5">
-                    <h4 class="text-muted fw-semibold">Nessun annuncio corrisponde ai criteri di ricerca.</h4>
+                    <h4 class="text-muted fw-semibold">{{ __('ui.noSearchMatch') }}</h4>
                 </div>
             @endforelse
         </div>

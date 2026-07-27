@@ -5,6 +5,17 @@
             <i class="bi bi-lightning-charge-fill text-warning me-1"></i>Presto.it
         </a>
         
+        <div class="dropdown ms-auto ms-lg-3 me-2 me-lg-0 order-lg-2">
+            <button class="btn btn-outline-light dropdown-toggle btn-sm px-2 d-flex align-items-center gap-1" type="button" id="langDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="bi bi-translate text-warning"></i>
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end dropdown-menu-lg-start shadow-sm bg-dark border-secondary" aria-labelledby="langDropdown" style="min-width: auto; padding: 4px;">
+                <li><x-_locale lang="it"/></li>
+                <li><x-_locale lang="uk"/></li>
+                <li><x-_locale lang="es"/></li>
+            </ul>
+        </div>
+
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -12,46 +23,46 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <form class="d-flex ms-auto" role="search" action="{{ route('announcements.search') }}" method="GET">
                 <div class="input-group">
-                    <input type="search" name="query" class="form-control" placeholder="Search" aria-label="search">
-                    <button type="submit" class="input-group-text btn btn-outline-success" id="basic-addon2">Search</button>
+                    <input type="search" name="query" class="form-control" placeholder="{{ __('ui.search') }}" aria-label="search">
+                    <button type="submit" class="input-group-text btn btn-outline-success" id="basic-addon2">{{ __('ui.search') }}</button>
                 </div>
             </form>
 
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0 gap-3 pt-3 pt-lg-0 align-items-lg-center">
                 
                 <li class="nav-item">
-                    <a class="nav-link text-white" href="{{ route('home') }}">Home</a>
+                    <a class="nav-link text-white" href="{{ route('home') }}">{{ __('ui.home') }}</a>
                 </li>
                 
                 <li class="nav-item">
-                    <a class="nav-link text-white" href="{{ route('announcements.index') }}">Tutti gli Annunci</a>
+                    <a class="nav-link text-white" href="{{ route('announcements.index') }}">{{ __('ui.allAnnouncements') }}</a>
                 </li>
 
                 @auth
                     @if(auth()->user()->is_revisor)
                         <li class="nav-item">
                             <a class="btn btn-outline-warning btn-sm fw-bold px-3" href="{{ route('revisor.index') }}">
-                                <i class="bi bi-shield-fill-check me-1"></i>Zona Revisore
+                                <i class="bi bi-shield-fill-check me-1"></i>{{ __('ui.revisorZone') }}
                             </a>
                         </li>
                     @endif
 
                     <li class="nav-item">
                         <a class="btn btn-warning btn-sm fw-bold px-3 text-white d-inline-block" href="{{ route('announcements.create') }}">
-                            <i class="bi bi-plus-circle-fill me-1"></i>Inserisci Annuncio
+                            <i class="bi bi-plus-circle-fill me-1"></i>{{ __('ui.insertAnnouncement') }}
                         </a>
                     </li>
                     
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle text-white fw-semibold" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="bi bi-person-circle me-1"></i>{{ auth()->user()->name }}
+                            <i class="bi bi-person-circle me-1"></i>{{ __('ui.hello') }}, {{ auth()->user()->name }}
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end shadow-sm" aria-labelledby="userDropdown">
                             <li>
                                 <form action="{{ route('logout') }}" method="POST">
                                     @csrf
                                     <button type="submit" class="dropdown-item text-danger">
-                                        <i class="bi bi-box-arrow-right me-2"></i>Logout
+                                        <i class="bi bi-box-arrow-right me-2"></i>{{ __('ui.logout') }}
                                     </button>
                                 </form>
                             </li>
@@ -59,10 +70,10 @@
                     </li>
                 @else
                     <li class="nav-item">
-                        <a class="btn btn-outline-light btn-sm px-3" href="{{ route('login') }}">Accedi</a>
+                        <a class="btn btn-outline-light btn-sm px-3" href="{{ route('login') }}">{{ __('ui.login') }}</a>
                     </li>
                     <li class="nav-item">
-                        <a class="btn btn-primary btn-sm px-3" href="{{ route('register') }}">Registrati</a>
+                        <a class="btn btn-primary btn-sm px-3" href="{{ route('register') }}">{{ __('ui.register') }}</a>
                     </li>
                 @endauth
 
