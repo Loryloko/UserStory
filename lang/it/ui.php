@@ -28,6 +28,8 @@ return [
     'descriptionLabel' => "Descrizione dell'oggetto",
     'descriptionPlaceholder' => "Descrivi le condizioni dell'oggetto...",
     'publishAnnouncementBtn' => 'Pubblica annuncio',
+    'imagesLabel' => 'Immagini dell\'annuncio',
+    'previewImagesTitle' => 'Anteprima immagini',
 //Categorie
     'categoryAnnouncementsTitle' => 'Annunci della categoria: :category',
     'Informatica e Telefonia' => 'Informatica e Telefonia',

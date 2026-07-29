@@ -28,6 +28,9 @@ return [
     'descriptionLabel' => 'Descripción del artículo',
     'descriptionPlaceholder' => 'Describe el estado del artículo...',
     'publishAnnouncementBtn' => 'Publicar anuncio',
+    'imagesLabel' => 'Imágenes del anuncio',
+    'previewImagesTitle' => 'Vista previa de las imágenes',
+
 //Categorie
     'categoryAnnouncementsTitle' => 'Anuncios de la categoría: :category',
     'Informatica e Telefonia' => 'Informática y Telefonía',

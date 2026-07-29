@@ -10,37 +10,38 @@
         </div>
 
         <div class="row g-5">
+            <!-- SEZIONE CAROSELLO DINAMICO AGGIORNATA SECONDO IL MANUALE AULAB -->
             <div class="col-12 col-lg-6">
-                <div id="announcementCarousel" class="carousel slide shadow-sm rounded-3 overflow-hidden bg-white" data-bs-ride="carousel">
-                    
-                    <div class="carousel-indicators">
-                        <button type="button" data-bs-target="#announcementCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                        <button type="button" data-bs-target="#announcementCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                        <button type="button" data-bs-target="#announcementCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
-                    </div>
+                @if ($announcement->images->count() > 0)
+                    <div id="announcementCarousel" class="carousel slide shadow-sm rounded-3 overflow-hidden bg-white" data-bs-ride="carousel">
+                        
+                        <div class="carousel-inner">
+                            @foreach ($announcement->images as $key => $image)
+                                <div class="carousel-item @if ($loop->first) active @endif">
+                                    <img src="{{ Storage::url($image->path) }}" class="d-block w-100 rounded shadow" 
+                                         alt="Immagine {{ $key + 1 }} dell'articolo '{{ $announcement->title }}'">
+                                </div>
+                            @endforeach
+                        </div>
 
-                    <div class="carousel-inner">
-                        <div class="carousel-item active">
-                            <img src="#" class="d-block w-100" alt="{{ __('ui.placeholderPhoto') }} 1">
-                        </div>
-                        <div class="carousel-item">
-                            <img src="#" class="d-block w-100" alt="{{ __('ui.placeholderPhoto') }} 2">
-                        </div>
-                        <div class="carousel-item">
-                            <img src="#" class="d-block w-100" alt="{{ __('ui.placeholderPhoto') }} 3">
-                        </div>
+                        <!-- I bottoni vengono mostrati solo se c'è più di una immagine -->
+                        @if ($announcement->images->count() > 1)
+                            <button class="carousel-control-prev" type="button" data-bs-target="#announcementCarousel" data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">{{ __('ui.previous') }}</span>
+                            </button>
+                            <button class="carousel-control-next" type="button" data-bs-target="#announcementCarousel" data-bs-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">{{ __('ui.next') }}</span>
+                            </button>
+                        @endif
+                        
                     </div>
-
-                    <button class="carousel-control-prev" type="button" data-bs-target="#announcementCarousel" data-bs-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">{{ __('ui.previous') }}</span>
-                    </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#announcementCarousel" data-bs-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">{{ __('ui.next') }}</span>
-                    </button>
-                    
-                </div>
+                @else
+                    <div class="shadow-sm rounded-3 overflow-hidden bg-white text-center">
+                        <img src="https://picsum.photos/300" class="img-fluid w-100" alt="Nessuna foto inserita dall'utente">
+                    </div>
+                @endif
             </div>
 
             <div class="col-12 col-lg-6 d-flex flex-column justify-content-between">

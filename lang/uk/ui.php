@@ -28,6 +28,9 @@ return [
     'descriptionLabel' => 'Item Description',
     'descriptionPlaceholder' => 'Describe the condition of the item...',
     'publishAnnouncementBtn' => 'Publish Announcement',
+    'imagesLabel' => 'Announcement Images',
+    'previewImagesTitle' => 'Images preview',
+
 //Categorie
     'categoryAnnouncementsTitle' => 'Announcements for category: :category',
     'Informatica e Telefonia' => 'IT and Telephony',

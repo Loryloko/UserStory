@@ -1,7 +1,7 @@
 @props(['announcement'])
 
 <div class="card shadow-sm h-100 border-0 rounded-3 overflow-hidden bg-white">
-    <img src="#{{ $announcement->id }}" class="card-img-top" alt="Immagine per {{ $announcement->title }}">
+    <img src="{{ $announcement->images->isNotEmpty() ? Storage::url($announcement->images->first()->path) : 'https//picsum.photos/200'}}" class="card-img-top" alt="Immagine per {{ $announcement->title }}">
     
     <div class="card-body d-flex flex-column justify-content-between p-4">
         <div>

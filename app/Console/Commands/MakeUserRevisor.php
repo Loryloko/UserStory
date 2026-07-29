@@ -7,7 +7,7 @@ use Illuminate\Console\Attributes\Signature;
 use Illuminate\Console\Command;
 use App\Models\User;
 
-#[Signature('app:make-user-revisor{email}')]
+#[Signature('app:make-user-revisor {email}')]
 #[Description('Rende un utente registrato un revisore della piattaforma')]
 class MakeUserRevisor extends Command
 {
