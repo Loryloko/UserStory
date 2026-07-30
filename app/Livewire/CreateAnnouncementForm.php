@@ -6,8 +6,10 @@ use Livewire\Component;
 use App\Models\Category;
 use App\Models\Announcement;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
 use Livewire\Attributes\Validate;
 use Livewire\WithFileUploads;
+use App\Jobs\ResizeImage; 
 
 class CreateAnnouncementForm extends Component
 {
@@ -74,13 +76,22 @@ class CreateAnnouncementForm extends Component
             'user_id' => Auth::id(),
         ]);
 
-        // 3. Se l'utente ha inserito delle immagini, le cicla e le salva
+        // 3. Se l'utente ha inserito delle immagini, le cicla, le salva e lancia il Job
         if (count($this->images) > 0) {
             foreach ($this->images as $image) {
-                $announcement->images()->create([
-                    'path' => $image->store('images', 'public')
+                // Costruisce il percorso dinamico basato sull'id dell'annuncio
+                $newFileName = "announcements/{$announcement->id}";
+
+                // Salva l'immagine fisica nel disco public e crea il record relazionato
+                $newImage = $announcement->images()->create([
+                    'path' => $image->store($newFileName, 'public')
                 ]);
+
+                // Invia il Job alla coda passando il path salvato e le dimensioni del crop
+                dispatch(new ResizeImage($newImage->path, 300, 300));
             }
+
+            File::deleteDirectory(storage_path('app/livewire-tmp'));
         }
 
         // 4. Crea il messaggio di conferma flash

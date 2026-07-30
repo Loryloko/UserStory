@@ -10,7 +10,6 @@
         </div>
 
         <div class="row g-5">
-            <!-- SEZIONE CAROSELLO DINAMICO AGGIORNATA SECONDO IL MANUALE AULAB -->
             <div class="col-12 col-lg-6">
                 @if ($announcement->images->count() > 0)
                     <div id="announcementCarousel" class="carousel slide shadow-sm rounded-3 overflow-hidden bg-white" data-bs-ride="carousel">
@@ -18,13 +17,12 @@
                         <div class="carousel-inner">
                             @foreach ($announcement->images as $key => $image)
                                 <div class="carousel-item @if ($loop->first) active @endif">
-                                    <img src="{{ Storage::url($image->path) }}" class="d-block w-100 rounded shadow" 
+                                    <img src="{{ $image->getUrl(300, 300) }}" class="d-block w-100 rounded shadow" 
                                          alt="Immagine {{ $key + 1 }} dell'articolo '{{ $announcement->title }}'">
                                 </div>
                             @endforeach
                         </div>
 
-                        <!-- I bottoni vengono mostrati solo se c'è più di una immagine -->
                         @if ($announcement->images->count() > 1)
                             <button class="carousel-control-prev" type="button" data-bs-target="#announcementCarousel" data-bs-slide="prev">
                                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
