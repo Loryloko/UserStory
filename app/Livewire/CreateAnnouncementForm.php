@@ -2,6 +2,8 @@
 
 namespace App\Livewire;
 
+use App\Jobs\GoogleVisionSafeSearch;
+use App\Jobs\GoogleVisionLabelImage;
 use Livewire\Component;
 use App\Models\Category;
 use App\Models\Announcement;
@@ -89,6 +91,8 @@ class CreateAnnouncementForm extends Component
 
                 // Invia il Job alla coda passando il path salvato e le dimensioni del crop
                 dispatch(new ResizeImage($newImage->path, 300, 300));
+                dispatch(new GoogleVisionSafeSearch($newImage->id));
+                dispatch(new GoogleVisionLabelImage($newImage->id));
             }
 
             File::deleteDirectory(storage_path('app/livewire-tmp'));

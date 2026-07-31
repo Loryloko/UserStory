@@ -24,18 +24,90 @@
             <div class="row g-5">
                 
                 <div class="col-12 col-lg-6">
-                    <div class="row border border-4 border-info rounded shadow py-4 bg-white">
+                    <div class="row border border-4 border-info rounded shadow py-4 bg-white px-2">
                         @if($announcement_to_check->images && $announcement_to_check->images->count() > 0)
                             @foreach ($announcement_to_check->images as $key => $image)
-                                <div class="col-6 col-md-4 mb-4">
-                                    <img src="{{ $image->getUrl(300, 300) }}" class="img-fluid rounded shadow" 
-                                         alt="Immagine {{ $key + 1 }} dell'articolo '{{ $announcement_to_check->title }}'">
+                                <div class="col-12 px-0">
+                                    <div class="card mb-3 shadow-sm border-0">
+                                        <div class="row g-0 p-2 align-items-center">
+                                            
+                                            <!-- Colonna Immagine -->
+                                            <div class="col-md-4 text-center">
+                                                <img src="{{ $image->getUrl(300, 300) }}" class="img-fluid rounded-start shadow-sm" 
+                                                     alt="Immagine {{ $key + 1 }} dell'articolo '{{ $announcement_to_check->title }}'">
+                                            </div>
+
+                                            <!-- Colonna Labels -->
+                                            <div class="col-md-5 ps-3">
+                                                <div class="card-body p-1">
+                                                    <h5 class="h6 fw-bold text-dark mb-2">Labels</h5>
+                                                    @if ($image->labels)
+                                                        @foreach ($image->labels as $label)
+                                                            <span class="badge bg-light text-dark border me-1 mb-1">#{{ $label }}</span>
+                                                        @endforeach
+                                                    @else
+                                                        <p class="text-muted small fst-italic">No labels</p>
+                                                    @endif
+                                                </div>
+                                            </div>
+
+                                            <!-- Colonna Ratings -->
+                                                <div class="col-md-3">
+                                                    <div class="card-body p-1">
+                                                        <h5 class="h6 fw-bold text-dark mb-2">Ratings</h5>
+                                                        
+                                                        <!-- Adult -->
+                                                        <div class="row justify-content-center align-items-center mb-1">
+                                                            <div class="col-2 d-flex justify-content-center">
+                                                                <!-- Rimosso bi-circle-fill perché l'icona è già dentro $image->adult -->
+                                                                <i class="{{ $image->adult }}" style="font-size: 14px;"></i>
+                                                            </div>
+                                                            <div class="col-10 small text-secondary ps-1">adult</div>
+                                                        </div>
+
+                                                        <!-- Violence -->
+                                                        <div class="row justify-content-center align-items-center mb-1">
+                                                            <div class="col-2 d-flex justify-content-center">
+                                                                <i class="{{ $image->violence }}" style="font-size: 14px;"></i>
+                                                            </div>
+                                                            <div class="col-10 small text-secondary ps-1">violence</div>
+                                                        </div>
+
+                                                        <!-- Spoof -->
+                                                        <div class="row justify-content-center align-items-center mb-1">
+                                                            <div class="col-2 d-flex justify-content-center">
+                                                                <i class="{{ $image->spoof }}" style="font-size: 14px;"></i>
+                                                            </div>
+                                                            <div class="col-10 small text-secondary ps-1">spoof</div>
+                                                        </div>
+
+                                                        <!-- Racy -->
+                                                        <div class="row justify-content-center align-items-center mb-1">
+                                                            <div class="col-2 d-flex justify-content-center">
+                                                                <i class="{{ $image->racy }}" style="font-size: 14px;"></i>
+                                                            </div>
+                                                            <div class="col-10 small text-secondary ps-1">racy</div>
+                                                        </div>
+
+                                                        <!-- Medical -->
+                                                        <div class="row justify-content-center align-items-center mb-1">
+                                                            <div class="col-2 d-flex justify-content-center">
+                                                                <i class="{{ $image->medical }}" style="font-size: 14px;"></i>
+                                                            </div>
+                                                            <div class="col-10 small text-secondary ps-1">medical</div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+
+                                        </div>
+                                    </div>
                                 </div>
                             @endforeach
                         @else
                             @for ($i = 0; $i < 6; $i++)
                                 <div class="col-6 col-md-4 mb-4 text-center">
-                                    <img src="https://picsum.photos/300" alt="Immagine segnaposto" class="img-fluid rounded shadow">
+                                    <img src="https://picsum.photos" alt="Immagine segnaposto" class="img-fluid rounded shadow">
                                 </div>
                             @endfor
                         @endif
