@@ -52,53 +52,53 @@
                                             </div>
 
                                             <!-- Colonna Ratings -->
-                                                <div class="col-md-3">
-                                                    <div class="card-body p-1">
-                                                        <h5 class="h6 fw-bold text-dark mb-2">Ratings</h5>
-                                                        
-                                                        <!-- Adult -->
-                                                        <div class="row justify-content-center align-items-center mb-1">
-                                                            <div class="col-2 d-flex justify-content-center">
-                                                                <!-- Rimosso bi-circle-fill perché l'icona è già dentro $image->adult -->
-                                                                <i class="{{ $image->adult }}" style="font-size: 14px;"></i>
-                                                            </div>
-                                                            <div class="col-10 small text-secondary ps-1">adult</div>
+                                            <div class="col-md-3">
+                                                <div class="card-body p-1">
+                                                    <h5 class="h6 fw-bold text-dark mb-2">Ratings</h5>
+                                                    
+                                                    <!-- Adult -->
+                                                    <div class="row justify-content-center align-items-center mb-1">
+                                                        <div class="col-2 d-flex justify-content-center">
+                                                            <!-- Sostituito: Stampa l'intera stringa salvata nel database dal Job -->
+                                                            <i class="{{ $image->adult }}" style="font-size: 14px;"></i>
                                                         </div>
-
-                                                        <!-- Violence -->
-                                                        <div class="row justify-content-center align-items-center mb-1">
-                                                            <div class="col-2 d-flex justify-content-center">
-                                                                <i class="{{ $image->violence }}" style="font-size: 14px;"></i>
-                                                            </div>
-                                                            <div class="col-10 small text-secondary ps-1">violence</div>
-                                                        </div>
-
-                                                        <!-- Spoof -->
-                                                        <div class="row justify-content-center align-items-center mb-1">
-                                                            <div class="col-2 d-flex justify-content-center">
-                                                                <i class="{{ $image->spoof }}" style="font-size: 14px;"></i>
-                                                            </div>
-                                                            <div class="col-10 small text-secondary ps-1">spoof</div>
-                                                        </div>
-
-                                                        <!-- Racy -->
-                                                        <div class="row justify-content-center align-items-center mb-1">
-                                                            <div class="col-2 d-flex justify-content-center">
-                                                                <i class="{{ $image->racy }}" style="font-size: 14px;"></i>
-                                                            </div>
-                                                            <div class="col-10 small text-secondary ps-1">racy</div>
-                                                        </div>
-
-                                                        <!-- Medical -->
-                                                        <div class="row justify-content-center align-items-center mb-1">
-                                                            <div class="col-2 d-flex justify-content-center">
-                                                                <i class="{{ $image->medical }}" style="font-size: 14px;"></i>
-                                                            </div>
-                                                            <div class="col-10 small text-secondary ps-1">medical</div>
-                                                        </div>
-
+                                                        <div class="col-10 small text-secondary ps-1">adult</div>
                                                     </div>
+
+                                                    <!-- Violence -->
+                                                    <div class="row justify-content-center align-items-center mb-1">
+                                                        <div class="col-2 d-flex justify-content-center">
+                                                            <i class="{{ $image->violence }}" style="font-size: 14px;"></i>
+                                                        </div>
+                                                        <div class="col-10 small text-secondary ps-1">violence</div>
+                                                    </div>
+
+                                                    <!-- Spoof -->
+                                                    <div class="row justify-content-center align-items-center mb-1">
+                                                        <div class="col-2 d-flex justify-content-center">
+                                                            <i class="{{ $image->spoof }}" style="font-size: 14px;"></i>
+                                                        </div>
+                                                        <div class="col-10 small text-secondary ps-1">spoof</div>
+                                                    </div>
+
+                                                    <!-- Racy -->
+                                                    <div class="row justify-content-center align-items-center mb-1">
+                                                        <div class="col-2 d-flex justify-content-center">
+                                                            <i class="{{ $image->racy }}" style="font-size: 14px;"></i>
+                                                        </div>
+                                                        <div class="col-10 small text-secondary ps-1">racy</div>
+                                                    </div>
+
+                                                    <!-- Medical -->
+                                                    <div class="row justify-content-center align-items-center mb-1">
+                                                        <div class="col-2 d-flex justify-content-center">
+                                                            <i class="{{ $image->medical }}" style="font-size: 14px;"></i>
+                                                        </div>
+                                                        <div class="col-10 small text-secondary ps-1">medical</div>
+                                                    </div>
+
                                                 </div>
+                                            </div>
 
                                         </div>
                                     </div>

@@ -31,13 +31,14 @@ class GoogleVisionSafeSearch implements ShouldQueue
      */
     public function handle(): void
     {
+        putenv('GOOGLE_APPLICATION_CREDENTIALS=' . base_path('google_credential.json'));
+
         $i = Image::find($this->announcement_image_id);
         if(!$i){
             return;
         }
 
-        $image = file_get_contents(storage_path('app/public/'. $i->path));
-        putenv('GOOGLE_APPLICATION_CREDENTIALS='.base_path('google_credential.json'));
+        $image = file_get_contents(storage_path('app/public/' . $i->path));
 
         $googleVisionClient = new ImageAnnotatorClient();
         $google_image = new VisionImage([
@@ -60,11 +61,12 @@ class GoogleVisionSafeSearch implements ShouldQueue
         $googleVisionClient->close();
 
         $safeSearchAnnotation = $response[0]->getSafeSearchAnnotation();
-        $adult = $safeSearchAnnotation->getAdult();
-        $spoof = $safeSearchAnnotation->getSpoof();
-        $medical = $safeSearchAnnotation->getMedical();
-        $violence = $safeSearchAnnotation->getViolence();
-        $racy = $safeSearchAnnotation->getRacy();
+        
+        $adult = (int)$safeSearchAnnotation->getAdult();
+        $spoof = (int)$safeSearchAnnotation->getSpoof();
+        $medical = (int)$safeSearchAnnotation->getMedical();
+        $violence = (int)$safeSearchAnnotation->getViolence();
+        $racy = (int)$safeSearchAnnotation->getRacy();
 
         $likeliHoodName = [
             'text-secondary bi bi-circle-fill',
