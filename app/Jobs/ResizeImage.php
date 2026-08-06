@@ -35,16 +35,14 @@ class ResizeImage implements ShouldQueue
         $srcPath = storage_path().'/app/public/' . $this->path . '/' . $this->fileName;
         $destPath = storage_path().'/app/public/' . $this->path . "/crop_{$w}x{$h}_".$this->fileName;
 
-        Image::useImageDriver(ImageDriver::Gd)->load($srcPath)
+        Image::load($srcPath)
         ->crop($w, $h, CropPosition::Center)
         ->watermark(
             base_path('resources/img/watermark.png'),
+            width: 50,
+            height: 50,
             paddingX: 5,
             paddingY: 5,
-            width: 50,
-            widthUnit: Unit::Percent,  // Richiesto da Spatie v3 per convalidare il 50% della guida
-            height: 50,
-            heightUnit: Unit::Percent, // Richiesto da Spatie v3 per convalidare il 50% della guida
             paddingUnit: Unit::Percent
         )
         ->save($destPath);   
