@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
+<nav class="navbar navbar-expand-lg navbar-dark shadow-sm">
     <div class="container">
         
         <a class="navbar-brand fw-bold fs-4" href="/">
@@ -6,10 +6,10 @@
         </a>
         
         <div class="dropdown ms-auto ms-lg-3 me-2 me-lg-0 order-lg-2">
-            <button class="btn btn-outline-light dropdown-toggle btn-sm px-2 d-flex align-items-center gap-1" type="button" id="langDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                <i class="bi bi-translate text-warning"></i>
+            <button class="btn btn-outline-warning dropdown-toggle btn-sm px-2 d-flex align-items-center gap-1" type="button" id="langDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="bi bi-translate text-outline-warning"></i>
             </button>
-            <ul class="dropdown-menu dropdown-menu-end dropdown-menu-lg-start shadow-sm bg-dark border-secondary" aria-labelledby="langDropdown" style="min-width: auto; padding: 4px;">
+            <ul class="dropdown-menu dropdown-menu-end dropdown-menu-lg-start shadow-sm border-secondary dropcolor" aria-labelledby="langDropdown" style="min-width: auto; padding: 4px;">
                 <li><x-_locale lang="it"/></li>
                 <li><x-_locale lang="uk"/></li>
                 <li><x-_locale lang="es"/></li>
@@ -24,7 +24,7 @@
             <form class="d-flex ms-auto" role="search" action="{{ route('announcements.search') }}" method="GET">
                 <div class="input-group">
                     <input type="search" name="query" class="form-control" placeholder="{{ __('ui.search') }}" aria-label="search">
-                    <button type="submit" class="input-group-text btn btn-outline-success" id="basic-addon2">{{ __('ui.search') }}</button>
+                    <button type="submit" class="input-group-text btn btn-teal" id="basic-addon2">{{ __('ui.search') }}</button>
                 </div>
             </form>
 
@@ -48,7 +48,7 @@
                     @endif
 
                     <li class="nav-item">
-                        <a class="btn btn-warning btn-sm fw-bold px-3 text-white d-inline-block" href="{{ route('announcements.create') }}">
+                        <a class="btn btn-warning btn-sm fw-bold px-3 d-inline-block" href="{{ route('announcements.create') }}">
                             <i class="bi bi-plus-circle-fill me-1"></i>{{ __('ui.insertAnnouncement') }}
                         </a>
                     </li>
@@ -70,10 +70,10 @@
                     </li>
                 @else
                     <li class="nav-item">
-                        <a class="btn btn-outline-light btn-sm px-3" href="{{ route('login') }}">{{ __('ui.login') }}</a>
+                        <a class="btn btn-outline-warning btn-sm px-3" href="{{ route('login') }}">{{ __('ui.login') }}</a>
                     </li>
                     <li class="nav-item">
-                        <a class="btn btn-primary btn-sm px-3" href="{{ route('register') }}">{{ __('ui.register') }}</a>
+                        <a class="btn btn-warning btn-sm px-3" href="{{ route('register') }}">{{ __('ui.register') }}</a>
                     </li>
                 @endauth
 

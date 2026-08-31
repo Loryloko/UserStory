@@ -1,4 +1,4 @@
-<footer class="bg-dark text-white pt-4 pb-2 mt-auto border-top border-secondary">
+<footer class="footer text-white pt-4 pb-2 mt-auto border-top border-secondary">
     <div class="container">
         <div class="row align-items-center">
             
@@ -8,7 +8,7 @@
                 </h5>
                 <p class="small text-white-50 mb-2">{{ __('ui.footerDescription') }}</p>
                 
-                <a href="{{ route('become.revisor.form') }}" class="text-white-50 small text-decoration-none d-inline-flex align-items-center opacity-75 hover-opacity-100">
+                <a href="{{ route('become.revisor.form') }}" class="text-warning small text-decoration-none d-inline-flex align-items-center opacity-75 hover-opacity-100">
                     <i class="bi bi-briefcase-fill me-1"></i> {{ __('ui.workWithUs') }}
                 </a>
             </div>

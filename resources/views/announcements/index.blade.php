@@ -11,7 +11,7 @@
 
                 <div class="col-12 col-md-4">
                     <label class="form-label small fw-bold text-secondary text-uppercase">{{ __('ui.categoryLabel') }}</label>
-                    <select name="category_id" class="form-select">
+                    <select name="category_id" class="form-select custom-select">
                         <option value="">{{ __('ui.allCategories') }}</option>
                         @foreach($categories as $category)
                             <option value="{{ $category->id }}" {{ request('category_id') == $category->id ? 'selected' : '' }}>
@@ -22,7 +22,7 @@
                 </div>
 
                 <div class="col-12 col-md-3 d-flex">
-                    <button type="submit" class="btn btn-primary fw-bold w-100 me-2 shadow-sm">
+                    <button type="submit" class="btn btn-teal fw-bold w-100 me-2 shadow-sm">
                         <i class="bi bi-search me-1"></i> {{ __('ui.search') }}
                     </button>
                     @if(request()->filled('query') || request()->filled('category_id'))
@@ -54,4 +54,5 @@
         </div>
 
     </div>
+    
 </x-layout>
